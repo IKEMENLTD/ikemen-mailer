@@ -12,7 +12,17 @@ dayjs.extend(relativeTime);
 dayjs.extend(dayDuration);
 
 const reEmail = /(.+?)@(.+?)/ig;
-const prefKey = 'listmonk_pref';
+const prefKey = 'ikemen_mailer_pref';
+const legacyPrefKey = 'listmonk_pref';
+// One-time migration: lift any legacy prefs over so existing users do not
+// lose dismissed banners / per-table sorts on first IKEMEN MAILER load.
+if (typeof localStorage !== 'undefined') {
+  const legacy = localStorage.getItem(legacyPrefKey);
+  if (legacy && !localStorage.getItem(prefKey)) {
+    localStorage.setItem(prefKey, legacy);
+    localStorage.removeItem(legacyPrefKey);
+  }
+}
 
 const htmlEntities = {
   '&': '&amp;',

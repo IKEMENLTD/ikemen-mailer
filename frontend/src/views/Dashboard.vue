@@ -17,11 +17,11 @@
               <article class="tile is-child notification" data-cy="lists">
                 <div class="columns is-mobile">
                   <div class="column is-6">
-                    <p class="title">
+                    <p class="title kpi">
                       <b-icon icon="format-list-bulleted-square" />
-                      {{ $utils.niceNumber(counts.lists.total) }}
+                      <span class="kpi-num">{{ $utils.niceNumber(counts.lists.total) }}</span>
                     </p>
-                    <p class="is-size-6 has-text-grey">
+                    <p class="is-size-6 has-text-grey kpi-label">
                       {{ $tc('globals.terms.list', counts.lists.total) }}
                     </p>
                   </div>
@@ -51,11 +51,11 @@
               <article class="tile is-child notification" data-cy="campaigns">
                 <div class="columns is-mobile">
                   <div class="column is-6">
-                    <p class="title">
+                    <p class="title kpi">
                       <b-icon icon="rocket-launch-outline" />
-                      {{ $utils.niceNumber(counts.campaigns.total) }}
+                      <span class="kpi-num">{{ $utils.niceNumber(counts.campaigns.total) }}</span>
                     </p>
-                    <p class="is-size-6 has-text-grey">
+                    <p class="is-size-6 has-text-grey kpi-label">
                       {{ $tc('globals.terms.campaign', counts.campaigns.total) }}
                     </p>
                   </div>
@@ -79,17 +79,17 @@
               <article class="tile is-child notification" data-cy="subscribers">
                 <div class="columns is-mobile">
                   <div class="column is-6">
-                    <p class="title">
+                    <p class="title kpi">
                       <b-icon icon="account-multiple" />
-                      {{ $utils.niceNumber(counts.subscribers.total) }}
+                      <span class="kpi-num">{{ $utils.niceNumber(counts.subscribers.total) }}</span>
                     </p>
-                    <p class="is-size-6 has-text-grey">
+                    <p class="is-size-6 has-text-grey kpi-label">
                       {{ $tc('globals.terms.subscriber', counts.subscribers.total) }}
                     </p>
                   </div>
 
                   <div class="column is-6">
-                    <ul class="no has-text-grey">
+                    <ul class="no has-text-grey kpi-breakdown">
                       <li>
                         <label for="#">{{ $utils.niceNumber(counts.subscribers.blocklisted) }}</label>
                         {{ $t('subscribers.status.blocklisted') }}
@@ -103,12 +103,12 @@
                 </div><!-- subscriber columns -->
                 <hr />
                 <div class="columns" data-cy="messages">
-                  <div class="column is-12">
-                    <p class="title">
-                      <b-icon icon="email-outline" />
-                      {{ $utils.niceNumber(counts.messages) }}
+                  <div class="column is-12 kpi-secondary">
+                    <p class="title is-secondary">
+                      <span class="kpi-num">{{ $utils.niceNumber(counts.messages) }}</span>
                     </p>
-                    <p class="is-size-6 has-text-grey">
+                    <p class="is-size-6 has-text-grey kpi-label">
+                      <b-icon icon="email-outline" />
                       {{ $t('dashboard.messagesSent') }}
                     </p>
                   </div>
@@ -123,13 +123,13 @@
                 <div class="column is-6">
                   <h3 class="title is-size-6">
                     {{ $t('dashboard.campaignViews') }}
-                  </h3><br />
+                  </h3>
                   <chart type="line" v-if="campaignViews" :data="campaignViews" />
                 </div>
                 <div class="column is-6">
-                  <h3 class="title is-size-6 has-text-right">
+                  <h3 class="title is-size-6">
                     {{ $t('dashboard.linkClicks') }}
-                  </h3><br />
+                  </h3>
                   <chart type="line" v-if="campaignClicks" :data="campaignClicks" />
                 </div>
               </div>

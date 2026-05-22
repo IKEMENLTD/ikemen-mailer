@@ -1,11 +1,12 @@
 <template>
   <div id="app">
+    <a href="#main-content" class="skip-link" v-if="$root.isLoaded">Skip to main content</a>
     <b-navbar :fixed-top="true" v-if="$root.isLoaded">
       <template #brand>
         <div class="logo">
-          <router-link :to="{ name: 'dashboard' }">
-            <img class="full" src="@/assets/logo.svg" alt="" />
-            <img class="favicon" src="@/assets/favicon.png" alt="" />
+          <router-link :to="{ name: 'dashboard' }" aria-label="IKEMEN MAILER home">
+            <img class="full" src="@/assets/logo.svg" alt="IKEMEN MAILER" />
+            <img class="favicon" src="@/assets/logo-mark.svg" alt="" aria-hidden="true" />
           </router-link>
         </div>
       </template>
@@ -23,9 +24,10 @@
         <b-navbar-dropdown class="user" tag="div" right>
           <template v-if="profile.username" #label>
             <span class="user-avatar">
-              <img v-if="profile.avatar" :src="profile.avatar" alt="" />
-              <span v-else>{{ profile.username[0].toUpperCase() }}</span>
+              <img v-if="profile.avatar" :src="profile.avatar" alt="" aria-hidden="true" />
+              <span v-else aria-hidden="true">{{ profile.username[0].toUpperCase() }}</span>
             </span>
+            <span class="is-sr-only">{{ profile.username }}</span>
           </template>
 
           <b-navbar-item class="user-name" tag="router-link" to="/user/profile">
@@ -33,13 +35,11 @@
             <div class="is-size-7">{{ profile.name }}</div>
           </b-navbar-item>
 
-          <b-navbar-item href="#">
-            <router-link to="/user/profile">
-              <b-icon icon="account-outline" /> {{ $t('users.profile') }}
-            </router-link>
+          <b-navbar-item tag="router-link" to="/user/profile">
+            <b-icon icon="account-outline" /> {{ $t('users.profile') }}
           </b-navbar-item>
-          <b-navbar-item href="#">
-            <a href="#" @click.prevent="doLogout"><b-icon icon="logout-variant" /> {{ $t('users.logout') }}</a>
+          <b-navbar-item tag="a" href="#" @click.prevent="doLogout">
+            <b-icon icon="logout-variant" /> {{ $t('users.logout') }}
           </b-navbar-item>
         </b-navbar-dropdown>
       </template>
@@ -59,7 +59,7 @@
       <!-- sidebar-->
 
       <!-- body //-->
-      <div class="main">
+      <main id="main-content" class="main" tabindex="-1">
         <div class="global-notices" v-if="isGlobalNotices">
           <div v-if="serverConfig.needs_restart" class="notification is-danger">
             {{ $t('settings.needsRestart') }}
@@ -101,8 +101,8 @@
           </div>
         </div>
 
-        <router-view :key="$route.fullPath" />
-      </div>
+        <router-view />
+      </main>
     </div>
 
     <b-loading v-if="!$root.isLoaded" active />
@@ -143,6 +143,13 @@ export default Vue.extend({
         // to non group items from sidebar
         this.activeGroup = {};
       }
+
+      // Move keyboard focus to the main content region after navigation so
+      // SR/keyboard users land at the start of the new view (WCAG 2.4.3).
+      this.$nextTick(() => {
+        const main = document.getElementById('main-content');
+        if (main) main.focus();
+      });
     },
   },
 

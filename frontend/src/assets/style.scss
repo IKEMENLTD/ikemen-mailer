@@ -1,48 +1,180 @@
-/* Import Bulma to set variables */
+/* =========================================================================
+   IKEMEN MAILER — Design System
+   Tokens · Typography · Elevation · Radii
+   Built on top of Bulma + Buefy. Upstream listmonk variables are refined
+   to match the IKEMEN-LTD premium-SaaS visual language.
+   ========================================================================= */
+
+/* Import Bulma utilities to set variables */
 @import "../node_modules/bulma/sass/utilities/_all";
 
-/* import inter-regular */
+/* ---------- Typography ---------- */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: local(''),
-       url('assets/fonts/Inter-Regular.woff2') format('woff2'),
+  font-display: swap;
+  src: local(''), url('assets/fonts/Inter-Regular.woff2') format('woff2');
 }
-
-/* import inter-600 */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  src: local(''),
-       url('assets/fonts/Inter-Bold.woff2') format('woff2'),
+  font-display: swap;
+  src: local(''), url('assets/fonts/Inter-Bold.woff2') format('woff2');
 }
 
+/* ---------- Brand & semantic palette ---------- */
+$ikemen-primary:       #4F46E5;   /* Indigo 600 */
+$ikemen-primary-deep:  #3730A3;   /* Indigo 800 */
+$ikemen-primary-soft:  #EEF2FF;   /* Indigo 50  */
+$ikemen-primary-rgb:   79, 70, 229;
+/* Accent palette — reserved for future v2.1 surfaces (notification dot,
+   highlight badge). Intentionally unused in v2 to keep first-impression
+   visuals to a single brand colour. */
+$ikemen-accent:        #F59E0B;   /* Amber 500  */
+$ikemen-accent-soft:   #FEF3C7;   /* Amber 100  */
+
+$ikemen-success:       #059669;   /* Emerald 600 */
+$ikemen-success-rgb:   5, 150, 105;
+$ikemen-success-soft:  #D1FAE5;
+$ikemen-danger:        #DC2626;   /* Red 600 */
+$ikemen-danger-rgb:    220, 38, 38;
+$ikemen-danger-soft:   #FEE2E2;
+$ikemen-warning:       #D97706;   /* Amber 600 */
+$ikemen-warning-rgb:   217, 119, 6;
+$ikemen-warning-soft:  #FEF3C7;
+$ikemen-info:          #2563EB;   /* Blue 600 */
+$ikemen-info-rgb:      37, 99, 235;
+$ikemen-info-soft:     #DBEAFE;
+
+$ikemen-ink-900:       #0F172A;   /* Slate 900 — primary text */
+$ikemen-ink-900-rgb:   15, 23, 42;
+$ikemen-ink-700:       #334155;   /* Slate 700 — secondary text */
+$ikemen-ink-500:       #64748B;   /* Slate 500 — muted text */
+$ikemen-ink-400:       #94A3B8;   /* Slate 400 — decorative icons/dividers ONLY (2.54:1 on white — NOT for body text or placeholders) */
+$ikemen-ink-300:       #CBD5E1;   /* Slate 300 — disabled */
+$ikemen-line:          #E2E8F0;   /* Slate 200 — borders */
+$ikemen-line-soft:     #F1F5F9;   /* Slate 100 — subtle dividers */
+$ikemen-surface:       #FFFFFF;
+$ikemen-bg:            #F8FAFC;   /* Slate 50 */
+$ikemen-bg-deep:       #EEF2F7;   /* Reserved — section bands / table zebra (v2.1) */
+$ikemen-overlay:       rgba(15, 23, 42, 0.45);  /* Modal/backdrop overlay */
+
+/* ---------- Elevation (5-tier shadow scale + focus + primary-tinted) ----------
+   Tinted shadows resolve `rgba($ikemen-primary, alpha)` at compile time so the
+   shadow auto-tracks any change to $ikemen-primary — no rgb desync. */
+$ikemen-shadow-xs: 0 1px 2px rgba($ikemen-ink-900, 0.04);
+$ikemen-shadow-sm: 0 1px 3px rgba($ikemen-ink-900, 0.06), 0 1px 2px rgba($ikemen-ink-900, 0.04);
+$ikemen-shadow-md: 0 4px 12px rgba($ikemen-ink-900, 0.06), 0 2px 4px rgba($ikemen-ink-900, 0.04);
+$ikemen-shadow-lg: 0 12px 24px rgba($ikemen-ink-900, 0.08), 0 4px 8px rgba($ikemen-ink-900, 0.04);
+$ikemen-shadow-xl: 0 24px 48px rgba($ikemen-ink-900, 0.12), 0 8px 16px rgba($ikemen-ink-900, 0.06);
+$ikemen-shadow-focus: 0 0 0 4px rgba($ikemen-primary, 0.18);
+$ikemen-shadow-primary-sm: 0 4px 12px rgba($ikemen-primary, 0.18);
+$ikemen-shadow-primary-md: 0 6px 16px rgba($ikemen-primary, 0.28);
+
+/* ---------- Radius scale ---------- */
+$ikemen-radius-xs: 4px;
+$ikemen-radius-sm: 6px;
+$ikemen-radius-md: 8px;
+$ikemen-radius-lg: 12px;
+$ikemen-radius-xl: 16px;
+$ikemen-radius-pill: 999px;
+
+/* ---------- Spacing scale (4px base) ---------- */
+$ikemen-space-1:  4px;
+$ikemen-space-2:  8px;
+$ikemen-space-3:  12px;
+$ikemen-space-4:  16px;
+$ikemen-space-5:  20px;
+$ikemen-space-6:  24px;
+$ikemen-space-7:  32px;
+$ikemen-space-8:  40px;
+$ikemen-space-9:  56px;
+$ikemen-space-10: 80px;
+
+/* ---------- Typography scale ----------
+   text-base = body default (15px). text-md (16px) is reserved for form
+   controls and CTAs that benefit from a slightly larger reading size. */
+$ikemen-text-xs:   0.75rem;    /* 12px */
+$ikemen-text-sm:   0.875rem;   /* 14px */
+$ikemen-text-base: 0.9375rem;  /* 15px — body */
+$ikemen-text-md:   1rem;       /* 16px — controls/CTA */
+$ikemen-text-lg:   1.125rem;   /* 18px */
+$ikemen-text-xl:   1.5rem;     /* 24px */
+$ikemen-text-2xl:  2rem;       /* 32px */
+$ikemen-text-3xl:  2.25rem;    /* 36px */
+
+/* Font-weight scale */
+$ikemen-weight-regular:  400;
+$ikemen-weight-medium:   500;
+$ikemen-weight-semibold: 600;
+$ikemen-weight-bold:     700;
+
+/* Letter-spacing scale */
+$ikemen-tracking-tight:  -0.02em;
+$ikemen-tracking-snug:   -0.01em;
+$ikemen-tracking-normal: 0;
+$ikemen-tracking-wide:   0.04em;
+$ikemen-tracking-wider:  0.08em;
+
+/* Line-height */
+$ikemen-leading-tight: 1.25;
+$ikemen-leading-snug:  1.4;
+$ikemen-leading-base:  1.6;
+
+/* ---------- Z-index scale ---------- */
+$ikemen-z-base:    1;
+$ikemen-z-sticky:  100;
+$ikemen-z-sidebar: 200;
+$ikemen-z-navbar:  300;
+$ikemen-z-overlay: 800;
+$ikemen-z-modal:   900;
+$ikemen-z-toast:   1000;
+
+/* ---------- Motion ---------- */
+$ikemen-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$ikemen-dur-fast: 120ms;
+$ikemen-dur: 200ms;
+$ikemen-dur-slow: 320ms;
+
+/* ---------- Interaction surfaces ---------- */
+$ikemen-touch-target: 44px;     /* WCAG 2.5.8 minimum tap target */
+$ikemen-shadow-press: inset 0 -1px 0 rgba(0, 0, 0, 0.08);  /* Bottom-edge for button rest state */
+
+/* ---------- Bulma variable overrides ---------- */
 $body-family: "Inter", "Helvetica Neue", sans-serif;
 $body-size: 15px;
-$background: $white-bis;
-$body-background-color: $white-bis;
-$primary: #0055d4;
-$green: #36995b;
-$turquoise: $green;
-$red: #FF5722;
+$body-line-height: 1.6;
+$background: $ikemen-bg;
+$body-background-color: $ikemen-bg;
+$body-color: $ikemen-ink-900;
 
-$link: $primary;
-$input-placeholder-color: $grey-light;
-$grey-lightest: #eaeaea;
+$primary: $ikemen-primary;
+$green:   $ikemen-success;
+$turquoise: $ikemen-success;
+$red:     $ikemen-danger;
+
+$link: $ikemen-primary;
+$link-hover: $ikemen-primary-deep;
+$input-placeholder-color: $ikemen-ink-500;  /* Slate 500 = 4.55:1 on white (WCAG AA) */
+$grey-lightest: $ikemen-line-soft;
 
 $colors: map-merge($colors, (
-    "turquoise": ($green, $green-invert),
-    "green": ($green, $green-invert),
-    "success": ($green, $green-invert),
-    "danger": ($red, $green-invert),
+    "turquoise": ($ikemen-success, $ikemen-success-soft),
+    "green":     ($ikemen-success, $ikemen-success-soft),
+    "success":   ($ikemen-success, $ikemen-success-soft),
+    "danger":    ($ikemen-danger,  $ikemen-danger-soft),
+    "warning":   ($ikemen-warning, $ikemen-warning-soft),
+    "info":      ($ikemen-info,    $ikemen-info-soft),
 ));
 
 $sidebar-box-shadow: none;
-$sidebar-width: 240px;
-$menu-item-active-background-color: $white-bis;
-$menu-item-active-color: $primary;
+$sidebar-width: 248px;
+$sidebar-background-color: $ikemen-surface;
+$menu-item-active-background-color: $ikemen-primary-soft;
+$menu-item-active-color: $ikemen-primary-deep;
+$menu-item-hover-background-color: $ikemen-line-soft;
 
 
 /* Buefy */
@@ -62,12 +194,21 @@ html, body {
 }
 
 code {
-  color: $grey;
+  color: $ikemen-ink-700;       /* 9.81:1 on white, 9.5:1 on bg — well above AA */
+  background: $ikemen-line-soft;
+  padding: 1px 6px;
+  border-radius: $ikemen-radius-sm;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.92em;
 }
 
 pre {
-  background: none;
-  border: 1px solid $grey-lightest;
+  background: $ikemen-line-soft;
+  border: 1px solid $ikemen-line;
+  border-radius: $ikemen-radius-md;
+  padding: $ikemen-space-3 $ikemen-space-4;
+  color: $ikemen-ink-900;
+  code { background: none; padding: 0; }
 }
 
 ul.no {
@@ -130,13 +271,18 @@ section {
   color: $primary !important;
 }
 
+/* Base .box — re-skinned by IKEMEN MAILER design layer at the bottom of this
+   file. We keep tokens here so any consumer rendering BEFORE the body class is
+   applied (route transitions, modal portals on <body>, SSR fragments) still
+   gets the premium surface, not the legacy 2px hard shadow. */
 .box {
-  background: $white;
-  box-shadow: 2px 2px 0 #f3f3f3;
-  border: 1px solid #e6e6e6;
+  background: $ikemen-surface;
+  border: 1px solid $ikemen-line;
+  border-radius: $ikemen-radius-lg;
+  box-shadow: $ikemen-shadow-sm;
 }
   .box hr {
-    background-color: #efefef;
+    background-color: $ikemen-line;
   }
 
 .navbar-item.user {
@@ -209,12 +355,12 @@ section {
 
   .sidebar {
     flex-shrink: 1;
-    box-shadow: 0 0 3px $grey-lighter;
-    background: $white;
+    box-shadow: $ikemen-shadow-xs;
+    background: $ikemen-surface;
   }
 
   .main {
-    background: $white;
+    background: $ikemen-surface;
     margin-left: 15px;
     padding: 30px;
     flex-grow: 1;
@@ -223,7 +369,7 @@ section {
 }
 
 .navbar {
-  box-shadow: 0 0 3px $grey-lighter;
+  box-shadow: $ikemen-shadow-xs;
 }
 .navbar-brand {
   padding: 0 0 0 25px;
@@ -248,10 +394,8 @@ section {
     background: transparent;
   }
   .menu-list {
-    .router-link-exact-active {
-      border-right: 5px solid $primary;
-      outline: 0 none;
-    }
+    /* Active state owned by `body.ikemen-skin .b-sidebar .menu-list
+       .router-link-exact-active` in the design layer. */
     li ul {
       margin-right: 0;
     }
@@ -344,12 +488,12 @@ body.is-noscroll {
 .richtext-editor {
   .tox-tinymce {
     height: 100%;
-    box-shadow: 2px 2px 0 #f3f3f3;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
+    box-shadow: $ikemen-shadow-xs;
+    border: 1px solid $ikemen-line;
+    border-radius: $ikemen-radius-md;
 
     .tox-toolbar__primary {
-      border-color: #e6e6e6 !important;
+      border-color: $ikemen-line !important;
     }
   }
   .tox-statusbar__branding {
@@ -392,8 +536,9 @@ body.is-noscroll {
   }
 
   .tox-textfield {
-    box-shadow: 2px 2px 0 $white-ter;
-    border: 1px solid $grey-lighter;
+    box-shadow: $ikemen-shadow-xs;
+    border: 1px solid $ikemen-line;
+    border-radius: $ikemen-radius-md;
   }
 }
 
@@ -478,9 +623,9 @@ body.is-noscroll {
   background: rgba(241, 241, 241, 0.7);
 }
 .modal-content, .modal.dialog .modal-card {
-  background: $white;
-  box-shadow: 0 0 10px #ddd;
-  border: 1px solid #ddd;
+  background: $ikemen-surface;
+  box-shadow: $ikemen-shadow-lg;
+  border: 1px solid $ikemen-line;
   padding: 0;
   border-radius: 5px;
 }
@@ -608,8 +753,8 @@ body.is-noscroll {
 }
 
 .input, .taginput .taginput-container.is-focusable, .textarea {
-  box-shadow: 2px 2px 0 $white-ter;
-  border: 1px solid $grey-lighter;
+  box-shadow: none;
+  border: 1px solid $ikemen-line;
 }
 
 .select:not(.is-multiple) {
@@ -675,11 +820,11 @@ body.is-noscroll {
   .tab-content {
     padding: 30px 20px;
 
-    border: 1px solid #ddd;
+    border: 1px solid $ikemen-line;
     border-width: 0 1px 1px 1px;
-    border-radius: 5px;
+    border-radius: $ikemen-radius-md;
 
-    box-shadow: 2px 2px 0 #f3f3f3;
+    box-shadow: $ikemen-shadow-xs;
   }
 
   ul[role=tablist] {
@@ -757,27 +902,10 @@ body.is-noscroll {
 
 /* Dashboard */
 section.dashboard {
-  .title {
-    margin-bottom: 0.5rem;
-  }
-
+  /* Spacing/elevation owned by `body.ikemen-skin section.dashboard` overrides
+     in the IKEMEN MAILER design layer at the bottom of this file. */
   .tile.notification {
     @extend .box;
-    padding: 10px;
-  }
-
-  .counts .column {
-    padding: 30px;
-  }
-
-  .level-item {
-    background-color: $white-bis;
-    padding: 30px;
-    margin: 10px;
-
-    &:first-child, &:last-child {
-      margin: 0;
-    }
   }
 
   label {
@@ -991,17 +1119,17 @@ section.analytics {
   }
 
   .item {
-    background: $white;
-    box-shadow: 2px 2px 0 #f3f3f3;
-    border: 1px solid #e6e6e6;
+    background: $ikemen-surface;
+    box-shadow: $ikemen-shadow-xs;
+    border: 1px solid $ikemen-line;
 
-    border-radius: 8px;
+    border-radius: $ikemen-radius-lg;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform $ikemen-dur $ikemen-ease, box-shadow $ikemen-dur $ikemen-ease;
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 2px 2px 5px #eee;
+      box-shadow: $ikemen-shadow-md;
 
       .actions {
         opacity: 1;
@@ -1376,4 +1504,692 @@ th.role-toggle-select a {
     display: inline-block;
     width: auto;
   }
+}
+
+/* =========================================================================
+   IKEMEN MAILER — Premium overrides v2
+   Sits after upstream listmonk styles. Scoped under `body.ikemen-skin` so the
+   override layer wins on specificity (not source-order), making upstream
+   rebases safe. Public-page style.css mirrors these tokens with the SAME
+   `--ik-*` prefix — keep the two `:root` blocks in sync.
+   ========================================================================= */
+
+:root {
+  /* --- Brand (single source of truth, prefix --ik-*) --- */
+  --ik-primary:           #{$ikemen-primary};
+  --ik-primary-deep:      #{$ikemen-primary-deep};
+  --ik-primary-soft:      #{$ikemen-primary-soft};
+  --ik-primary-rgb:       #{$ikemen-primary-rgb};
+  --ik-accent:            #{$ikemen-accent};
+  --ik-accent-soft:       #{$ikemen-accent-soft};
+
+  /* Semantic (with -rgb companions for tinted backgrounds) */
+  --ik-success:           #{$ikemen-success};
+  --ik-success-rgb:       #{$ikemen-success-rgb};
+  --ik-success-soft:      #{$ikemen-success-soft};
+  --ik-danger:            #{$ikemen-danger};
+  --ik-danger-rgb:        #{$ikemen-danger-rgb};
+  --ik-danger-soft:       #{$ikemen-danger-soft};
+  --ik-warning:           #{$ikemen-warning};
+  --ik-warning-rgb:       #{$ikemen-warning-rgb};
+  --ik-warning-soft:      #{$ikemen-warning-soft};
+  --ik-info:              #{$ikemen-info};
+  --ik-info-rgb:          #{$ikemen-info-rgb};
+  --ik-info-soft:         #{$ikemen-info-soft};
+
+  /* Ink ramp + surfaces */
+  --ik-ink-900:           #{$ikemen-ink-900};
+  --ik-ink-900-rgb:       #{$ikemen-ink-900-rgb};
+  --ik-ink-700:           #{$ikemen-ink-700};
+  --ik-ink-500:           #{$ikemen-ink-500};
+  --ik-ink-400:           #{$ikemen-ink-400};
+  --ik-ink-300:           #{$ikemen-ink-300};
+  --ik-line:              #{$ikemen-line};
+  --ik-line-soft:         #{$ikemen-line-soft};
+  --ik-surface:           #{$ikemen-surface};
+  --ik-bg:                #{$ikemen-bg};
+  --ik-bg-deep:           #{$ikemen-bg-deep};
+  --ik-overlay:           #{$ikemen-overlay};
+
+  /* Elevation */
+  --ik-shadow-xs:         #{$ikemen-shadow-xs};
+  --ik-shadow-sm:         #{$ikemen-shadow-sm};
+  --ik-shadow-md:         #{$ikemen-shadow-md};
+  --ik-shadow-lg:         #{$ikemen-shadow-lg};
+  --ik-shadow-xl:         #{$ikemen-shadow-xl};
+  --ik-shadow-focus:      #{$ikemen-shadow-focus};
+  --ik-shadow-primary-sm: #{$ikemen-shadow-primary-sm};
+  --ik-shadow-primary-md: #{$ikemen-shadow-primary-md};
+
+  /* Radius */
+  --ik-radius-xs:         #{$ikemen-radius-xs};
+  --ik-radius-sm:         #{$ikemen-radius-sm};
+  --ik-radius-md:         #{$ikemen-radius-md};
+  --ik-radius-lg:         #{$ikemen-radius-lg};
+  --ik-radius-xl:         #{$ikemen-radius-xl};
+  --ik-radius-pill:       #{$ikemen-radius-pill};
+
+  /* Spacing */
+  --ik-space-1:  #{$ikemen-space-1};
+  --ik-space-2:  #{$ikemen-space-2};
+  --ik-space-3:  #{$ikemen-space-3};
+  --ik-space-4:  #{$ikemen-space-4};
+  --ik-space-5:  #{$ikemen-space-5};
+  --ik-space-6:  #{$ikemen-space-6};
+  --ik-space-7:  #{$ikemen-space-7};
+  --ik-space-8:  #{$ikemen-space-8};
+  --ik-space-9:  #{$ikemen-space-9};
+  --ik-space-10: #{$ikemen-space-10};
+
+  /* Typography */
+  --ik-text-xs:    #{$ikemen-text-xs};
+  --ik-text-sm:    #{$ikemen-text-sm};
+  --ik-text-base:  #{$ikemen-text-base};
+  --ik-text-md:    #{$ikemen-text-md};
+  --ik-text-lg:    #{$ikemen-text-lg};
+  --ik-text-xl:    #{$ikemen-text-xl};
+  --ik-text-2xl:   #{$ikemen-text-2xl};
+  --ik-text-3xl:   #{$ikemen-text-3xl};
+  --ik-leading-tight: #{$ikemen-leading-tight};
+  --ik-leading-snug:  #{$ikemen-leading-snug};
+  --ik-leading-base:  #{$ikemen-leading-base};
+
+  /* Motion */
+  --ik-ease:      #{$ikemen-ease};
+  --ik-dur-fast:  #{$ikemen-dur-fast};
+  --ik-dur:       #{$ikemen-dur};
+  --ik-dur-slow:  #{$ikemen-dur-slow};
+
+  /* Interaction */
+  --ik-touch-target: #{$ikemen-touch-target};
+  --ik-shadow-press: #{$ikemen-shadow-press};
+
+  /* Z-index */
+  --ik-z-base:    #{$ikemen-z-base};
+  --ik-z-sticky:  #{$ikemen-z-sticky};
+  --ik-z-sidebar: #{$ikemen-z-sidebar};
+  --ik-z-navbar:  #{$ikemen-z-navbar};
+  --ik-z-overlay: #{$ikemen-z-overlay};
+  --ik-z-modal:   #{$ikemen-z-modal};
+  --ik-z-toast:   #{$ikemen-z-toast};
+
+  /* Weight */
+  --ik-weight-regular:  #{$ikemen-weight-regular};
+  --ik-weight-medium:   #{$ikemen-weight-medium};
+  --ik-weight-semibold: #{$ikemen-weight-semibold};
+  --ik-weight-bold:     #{$ikemen-weight-bold};
+
+  /* Letter-spacing */
+  --ik-tracking-tight:  #{$ikemen-tracking-tight};
+  --ik-tracking-snug:   #{$ikemen-tracking-snug};
+  --ik-tracking-normal: #{$ikemen-tracking-normal};
+  --ik-tracking-wide:   #{$ikemen-tracking-wide};
+  --ik-tracking-wider:  #{$ikemen-tracking-wider};
+}
+
+/* ---------- Skip link (WCAG 2.4.1 Bypass Blocks) ---------- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: $ikemen-z-toast;
+  padding: 10px 16px;
+  background: $ikemen-primary;
+  color: #fff;
+  border-radius: $ikemen-radius-md;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: $ikemen-shadow-md;
+  transition: top $ikemen-dur $ikemen-ease;
+
+  &:focus, &:focus-visible {
+    top: 16px;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    color: #fff;
+  }
+}
+
+/* ---------- Screen-reader-only utility ---------- */
+.is-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* All component overrides are scoped under body.ikemen-skin so they win on
+   specificity (0,2,X) over upstream rules (0,1,X), independent of source order. */
+body.ikemen-skin {
+  background: $ikemen-bg;
+  color: $ikemen-ink-900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ---------- App shell ---------- */
+  #app {
+    .sidebar {
+      box-shadow: $ikemen-shadow-xs;
+      border-right: 1px solid $ikemen-line;
+      background: $ikemen-surface;
+    }
+    .main {
+      background: transparent;
+      margin-left: 0;
+      padding: $ikemen-space-7 $ikemen-space-8;
+    }
+    .wrapper { background: $ikemen-bg; }
+  }
+
+  /* ---------- Navbar ---------- */
+  .navbar {
+    background: $ikemen-surface;
+    box-shadow: $ikemen-shadow-xs;
+    border-bottom: 1px solid $ikemen-line;
+    min-height: 64px;
+  }
+  .navbar-brand {
+    padding: 0 0 0 $ikemen-space-7;
+    align-items: center;
+
+    .full { max-height: 26px; margin-top: 0; }
+    .favicon { margin-top: 0; max-height: 28px; }
+  }
+  .navbar .navbar-item {
+    color: $ikemen-ink-700;
+    transition: color $ikemen-dur $ikemen-ease, background $ikemen-dur $ikemen-ease;
+    min-height: $ikemen-touch-target;
+    display: inline-flex;
+    align-items: center;
+    &:hover { color: $ikemen-primary; }
+  }
+
+  /* ---------- Sidebar menu ----------
+     Single-cue active state: indigo-soft fill + bold ink. No left bar — keeps
+     hierarchy quiet next to inactive rows. (Reviewer #1 fix.) */
+  .b-sidebar {
+    top: 80px;
+    .menu-list {
+      padding: $ikemen-space-4 $ikemen-space-3;
+
+      > li {
+        margin-bottom: $ikemen-space-1;
+        > a {
+          padding: $ikemen-space-3 $ikemen-space-4;
+          min-height: $ikemen-touch-target;
+          margin: 0 2px;
+          border-radius: $ikemen-radius-md;
+          color: $ikemen-ink-700;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          transition: background $ikemen-dur $ikemen-ease, color $ikemen-dur $ikemen-ease;
+
+          &:hover { background: $ikemen-line-soft; color: $ikemen-ink-900; }
+        }
+      }
+      /* 2-cue active state: indigo-soft fill + indigo-deep ink. Weight stays
+         500 to match inactive rows — the colour shift is the differentiator. */
+      .router-link-exact-active {
+        background: $ikemen-primary-soft !important;
+        color: $ikemen-primary-deep !important;
+        border-right: 0;
+      }
+      li ul {
+        margin: $ikemen-space-1 0 $ikemen-space-2 $ikemen-space-6;
+        padding-left: $ikemen-space-2;
+        border-left: 1px solid $ikemen-line;
+
+        li > a {
+          padding: $ikemen-space-3 $ikemen-space-3;
+          min-height: $ikemen-touch-target;
+          font-size: $ikemen-text-sm;
+          color: $ikemen-ink-500;
+          border-radius: $ikemen-radius-sm;
+          display: flex;
+          align-items: center;
+          &:hover { color: $ikemen-ink-900; }
+        }
+        .router-link-exact-active {
+          color: $ikemen-primary-deep !important;
+          background: $ikemen-primary-soft !important;
+        }
+      }
+      .icon { margin-right: $ikemen-space-2; opacity: 0.85; }
+    }
+  }
+
+  /* ---------- Cards / .box ----------
+     The body.ikemen-skin scope (0,2,1) beats upstream `.box` (0,1,0) without
+     needing !important. Upstream uses no `!important` on .box itself. */
+  .box {
+    background: $ikemen-surface;
+    border: 1px solid $ikemen-line;
+    border-radius: $ikemen-radius-lg;
+    box-shadow: $ikemen-shadow-sm;
+    transition: box-shadow $ikemen-dur $ikemen-ease, transform $ikemen-dur $ikemen-ease;
+  }
+
+  /* ---------- Dashboard tiles ----------
+     KPI hierarchy: icon row → big tabular number → label. 8pt grid gutters. */
+  section.dashboard {
+    .title.is-5 {
+      font-size: $ikemen-text-sm;
+      font-weight: 600;
+      color: $ikemen-ink-500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tile.is-ancestor { margin: -$ikemen-space-2; }
+    .tile.is-parent { padding: $ikemen-space-2; }
+    .counts .column { padding: $ikemen-space-3; }
+    .level-item { padding: $ikemen-space-4; margin: 0; background: transparent; }
+
+    .tile.notification {
+      border-radius: $ikemen-radius-lg;
+      border: 1px solid $ikemen-line;
+      box-shadow: $ikemen-shadow-sm;
+      background: $ikemen-surface;
+      padding: $ikemen-space-6;
+      transition: box-shadow $ikemen-dur $ikemen-ease, transform $ikemen-dur $ikemen-ease;
+
+      &:hover {
+        box-shadow: $ikemen-shadow-md;
+        transform: translateY(-1px);
+      }
+
+      /* KPI block: stack icon ABOVE the number. Scoped to .title.kpi so
+         non-KPI .title elsewhere in dashboard (e.g. chart card headers)
+         keep their natural sizing. */
+      .title.kpi {
+        font-size: $ikemen-text-3xl;
+        font-weight: 600;
+        color: $ikemen-ink-900;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $ikemen-space-3;
+        min-width: 0;
+        margin-bottom: $ikemen-space-2;
+
+        .icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: $ikemen-primary;
+          background: $ikemen-primary-soft;
+          border-radius: $ikemen-radius-md;
+          width: 40px;
+          height: 40px;
+          margin: 0;
+          flex-shrink: 0;
+
+          i, span { font-size: 1.25rem; }
+        }
+
+        .kpi-num { display: inline-block; line-height: 1; }
+      }
+
+      /* Secondary KPI (e.g. messages sent — below the hr) is calmer. */
+      .title.is-secondary {
+        font-size: $ikemen-text-xl;
+        font-weight: 600;
+        color: $ikemen-ink-700;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+        margin-bottom: $ikemen-space-1;
+      }
+      .kpi-secondary .kpi-label .icon {
+        color: $ikemen-ink-500;
+        margin-right: $ikemen-space-1;
+        opacity: 0.85;
+      }
+
+      /* Chart card headers — small section labels, not heroes. */
+      .charts .title.is-size-6 {
+        font-size: $ikemen-text-xs;
+        font-weight: 600;
+        color: $ikemen-ink-500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: $ikemen-space-3;
+        display: block;
+      }
+
+      /* KPI breakdown list (right column of subscribers tile) */
+      .kpi-breakdown {
+        li {
+          padding: $ikemen-space-1 0;
+          font-size: $ikemen-text-sm;
+          color: $ikemen-ink-700 !important;
+          label {
+            color: $ikemen-ink-900;
+            font-weight: 600;
+            min-width: 56px;
+            font-variant-numeric: tabular-nums;
+          }
+        }
+      }
+
+      .has-text-grey {
+        color: $ikemen-ink-500 !important;
+        font-size: $ikemen-text-sm;       /* 14px — readable lowercase fallback */
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: $ikemen-space-2;
+      }
+
+      ul.no li {
+        padding: $ikemen-space-1 0;
+        font-size: $ikemen-text-sm;
+        label {
+          color: $ikemen-ink-900;
+          font-weight: 600;
+          min-width: 56px;
+          font-variant-numeric: tabular-nums;
+        }
+      }
+
+      hr {
+        background-color: $ikemen-line;
+        height: 1px;
+        margin: $ikemen-space-5 0;
+      }
+    }
+  }
+
+  /* ---------- Buttons ----------
+     Restraint: flat at rest (no coloured drop-shadow). Lift only on :active.
+     Soft glow only on :focus-visible. (Reviewer #1 fix.) */
+  .button {
+    border-radius: $ikemen-radius-md;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    transition: background $ikemen-dur $ikemen-ease, color $ikemen-dur $ikemen-ease,
+                box-shadow $ikemen-dur $ikemen-ease, transform $ikemen-dur-fast $ikemen-ease;
+
+    &.is-primary {
+      background: $ikemen-primary;
+      color: #fff;
+      box-shadow: $ikemen-shadow-press;
+
+      &:hover {
+        background: $ikemen-primary-deep;
+        box-shadow: $ikemen-shadow-press, $ikemen-shadow-primary-sm;
+      }
+      &:active {
+        background: $ikemen-primary-deep;
+        transform: translateY(1px);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+      }
+      &:focus-visible {
+        outline: 2px solid $ikemen-primary;
+        outline-offset: 2px;
+        box-shadow: $ikemen-shadow-focus;
+      }
+      &:disabled {
+        background: $ikemen-ink-300;
+        color: $ikemen-surface;
+        box-shadow: none;
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      .kbd {
+        color: rgba(255, 255, 255, 0.75);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+    }
+
+    &.is-light.is-outlined {
+      background: $ikemen-primary-soft;
+      border-color: $ikemen-primary-soft;
+      color: $ikemen-primary-deep;
+      &.is-selected { border-color: $ikemen-primary; color: $ikemen-primary-deep; }
+    }
+    &.is-text {
+      color: $ikemen-ink-700;
+      &:hover { color: $ikemen-primary; background: $ikemen-line-soft; }
+    }
+  }
+
+  /* ---------- Inputs ---------- */
+  .input, .taginput .taginput-container.is-focusable, .textarea, .select select {
+    border-radius: $ikemen-radius-md !important;
+    border: 1px solid $ikemen-line !important;
+    box-shadow: none !important;
+    color: $ikemen-ink-900;
+    min-height: $ikemen-touch-target;
+    transition: border-color $ikemen-dur $ikemen-ease, box-shadow $ikemen-dur $ikemen-ease;
+
+    &::placeholder { color: $ikemen-ink-500; opacity: 1; }  /* 4.55:1 on white */
+    &:hover { border-color: $ikemen-ink-300; }
+    &:focus, &:focus-within, &.is-focused {
+      border-color: $ikemen-primary !important;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: $ikemen-shadow-focus !important;
+    }
+  }
+
+  /* ---------- Tables ---------- */
+  .main table {
+    background: $ikemen-surface;
+    border-radius: $ikemen-radius-lg;
+    overflow: hidden;
+    box-shadow: $ikemen-shadow-xs;
+    border: 1px solid $ikemen-line;
+
+    thead th {
+      background: $ikemen-bg;
+      border-bottom: 1px solid $ikemen-line;
+      color: $ikemen-ink-500;
+      font-weight: 600;
+      font-size: $ikemen-text-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: $ikemen-space-3 $ikemen-space-4;
+    }
+    tbody td {
+      border-color: $ikemen-line-soft;
+      padding: $ikemen-space-4;
+      color: $ikemen-ink-900;
+    }
+    tbody tr {
+      transition: background $ikemen-dur $ikemen-ease;
+      &:hover { background: $ikemen-bg; }
+    }
+  }
+
+  /* ---------- Tags ---------- */
+  .tag:not(body) {
+    background-color: $ikemen-line-soft;
+    color: $ikemen-ink-700;
+    font-weight: 500;
+    font-size: $ikemen-text-xs;
+    padding: 4px 10px !important;
+    border-radius: $ikemen-radius-pill !important;
+
+    &.public, &.running, &.list, &.campaign, &.user, &.primary {
+      background: $ikemen-primary-soft;
+      color: $ikemen-primary-deep;
+    }
+    &.finished, &.enabled, &.status-confirmed {
+      background: $ikemen-success-soft;
+      color: $ikemen-success;
+    }
+    &.blocklisted, &.cancelled, &.status-unsubscribed, &.campaign_visual {
+      background: $ikemen-danger-soft;
+      color: $ikemen-danger;
+    }
+    &.private, &.scheduled, &.paused, &.tx, &.api {
+      background: $ikemen-warning-soft;
+      color: $ikemen-warning;
+    }
+  }
+
+  /* ---------- Notifications / global notices ---------- */
+  .notification {
+    border-radius: $ikemen-radius-md;
+    padding: $ikemen-space-3 $ikemen-space-5;
+    background: $ikemen-surface;
+    border: 1px solid $ikemen-line;
+    border-left: 4px solid $ikemen-line;
+    box-shadow: $ikemen-shadow-xs;
+
+    &.is-danger  { border-left-color: $ikemen-danger; background: $ikemen-danger-soft; color: $ikemen-ink-900; }
+    &.is-success { border-left-color: $ikemen-success; background: $ikemen-success-soft; color: $ikemen-ink-900; }
+    &.is-info    { border-left-color: $ikemen-info; background: $ikemen-info-soft; color: $ikemen-ink-900; }
+    &.is-warning { border-left-color: $ikemen-warning; background: $ikemen-warning-soft; color: $ikemen-ink-900; }
+  }
+
+  /* ---------- Page headers ---------- */
+  .page-header {
+    margin-bottom: $ikemen-space-6;
+    h1, h4, .title {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: $ikemen-ink-900;
+      &.is-4 { font-size: $ikemen-text-xl; line-height: $ikemen-leading-tight; }
+      &.is-5 { font-size: $ikemen-text-lg; line-height: $ikemen-leading-tight; }
+    }
+  }
+
+  /* ---------- Modals ---------- */
+  .modal-content, .modal.dialog .modal-card {
+    border-radius: $ikemen-radius-lg;
+    border: 1px solid $ikemen-line;
+    box-shadow: $ikemen-shadow-lg;
+  }
+  .modal-background {
+    background: $ikemen-overlay;
+    backdrop-filter: blur(2px);
+  }
+  /* Restore the modal close button (upstream hides .is-large; we want a tappable target) */
+  .modal-close.is-large {
+    display: inline-flex !important;
+    width: $ikemen-touch-target;
+    height: $ikemen-touch-target;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Visible landing cue for keyboard users after route navigation */
+  #main-content:focus-visible {
+    outline: 2px solid $ikemen-primary;
+    outline-offset: -2px;
+    border-radius: $ikemen-radius-md;
+  }
+
+  /* ---------- Tabs ---------- */
+  .b-tabs .tab-content {
+    border-radius: $ikemen-radius-lg;
+    border-color: $ikemen-line;
+    box-shadow: $ikemen-shadow-xs !important;  /* upstream uses `2px 2px 0 #f3f3f3` */
+  }
+
+  /* ---------- TinyMCE dialog text fields (override upstream hard shadow) ---------- */
+  .tox.tox-silver-sink .tox-textfield {
+    box-shadow: $ikemen-shadow-xs !important;
+    border-color: $ikemen-line !important;
+    border-radius: $ikemen-radius-md !important;
+  }
+
+  /* ---------- Media gallery ---------- */
+  .media-files .item {
+    border-radius: $ikemen-radius-lg;
+    border: 1px solid $ikemen-line;
+    box-shadow: $ikemen-shadow-xs;
+    &:hover {
+      box-shadow: $ikemen-shadow-md;
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ---------- Toasts ---------- */
+  .notices .toast {
+    border-radius: $ikemen-radius-md;
+    border-left-width: 4px;
+    box-shadow: $ikemen-shadow-md;
+    padding: $ikemen-space-3 $ikemen-space-5;
+  }
+
+  /* ---------- User avatar ---------- */
+  .user-avatar {
+    img, span {
+      box-shadow: $ikemen-shadow-xs;
+      border: 1px solid $ikemen-line;
+    }
+    span {
+      background: linear-gradient(135deg, $ikemen-primary 0%, $ikemen-primary-deep 100%);
+      color: #fff;
+      border: 0;
+    }
+  }
+
+  /* ---------- Focus ring (scoped — avoids phantom rounded outlines on text links) ---------- */
+  .button:focus-visible,
+  .input:focus-visible,
+  .textarea:focus-visible,
+  .select select:focus-visible,
+  .b-checkbox.checkbox input:focus-visible + .check,
+  .navbar-item:focus-visible,
+  .menu-list a:focus-visible,
+  .b-sidebar a:focus-visible {
+    outline: 2px solid $ikemen-primary;
+    outline-offset: 2px;
+    box-shadow: $ikemen-shadow-focus;
+    border-radius: $ikemen-radius-md;
+  }
+
+  /* ---------- Code editor refresh ---------- */
+  .plain-editor textarea, .code-editor {
+    border-radius: $ikemen-radius-md;
+    border-color: $ikemen-line;
+  }
+
+  /* ---------- Disabled state (was 0.30, harms low-vision users) ---------- */
+  .is-disabled,
+  .settings .disabled { opacity: 0.55; }
+
+  /* ---------- RichText editor card ---------- */
+  .richtext-editor .tox-tinymce {
+    box-shadow: $ikemen-shadow-xs;
+    border-color: $ikemen-line;
+    border-radius: $ikemen-radius-md;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media screen and (max-width: 1100px) {
+    #app .main { padding: $ikemen-space-6 $ikemen-space-4; }
+  }
+}
+
+/* ---------- Reduced motion (top-level, applies even outside ikemen-skin) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .button:hover, .button:active,
+  .tile.notification:hover,
+  .media-files .item:hover,
+  .media-files img:hover {
+    transform: none !important;
+  }
+  .modal-background { backdrop-filter: none !important; }
 }

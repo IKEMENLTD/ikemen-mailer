@@ -1,36 +1,38 @@
 {{ define "admin-login" }}
 {{ template "header" .}}
 
-<section class="login">
-	<h2>{{ .L.T "users.login"}}</h2>
+<main>
+<section class="login" aria-labelledby="login-heading">
+	<h2 id="login-heading">{{ .L.T "users.login"}}</h2>
 	{{ if .Data.PasswordEnabled }}
-	<form method="post" action="/admin/login" class="form">
+	<form method="post" action="/admin/login" class="form" aria-labelledby="login-heading">
 		<div>
 			<input type="hidden" name="nonce" value="{{ .Data.Nonce }}" />
 			<input type="hidden" name="next" value="{{ .Data.NextURI }}" />
 			<p>
 				<label for="username">{{ .L.T "users.username" }}</label>
-				<input id="username" type="text" name="username" autofocus required minlength="3" />
+				<input id="username" type="text" name="username" autocomplete="username" autofocus required minlength="3" />
 			</p>
 			<p>
 				<label for="password">{{ .L.T "users.password" }}</label>
-				<input id="password" type="password" name="password" required minlength="8" />
+				<input id="password" type="password" name="password" autocomplete="current-password" required minlength="8" aria-describedby="pw-hint" />
+				<small id="pw-hint" class="pw-hint-visible">Minimum 8 characters.</small>
 			</p>
 
-			{{ if .Data.Error }}<p><span class="error">{{ .Data.Error }}</span></p>{{ end }}
+			{{ if .Data.Error }}<p><span class="error" role="alert"><span class="is-sr-only">Error: </span>{{ .Data.Error }}</span></p>{{ end }}
 
 			<p class="submit"><button class="button" type="submit">{{ .L.T "users.login" }}</button></p>
 		</div>
 	</form>
 	{{ end }}
-	
+
 	{{ if .Data.OIDCProvider }}
-	<form method="post" action="/auth/oidc">
+	<form method="post" action="/auth/oidc" aria-label="Single sign-on">
 		<div>
 			<input type="hidden" name="nonce" value="{{ .Data.Nonce }}" />
 			<input type="hidden" name="next" value="{{ .Data.NextURI }}" />
 			<p><button class="button button-outline" type="submit">
-				<img src="{{ .RootURL }}/public/static/auth/{{ .Data.OIDCProviderLogo }}" alt="" />
+				<img src="{{ .RootURL }}/public/static/auth/{{ .Data.OIDCProviderLogo }}" alt="" aria-hidden="true" />
 				{{ .L.Ts "users.loginOIDC" "name" .Data.OIDCProvider }}
 			</button></p>
 		</div>
@@ -40,6 +42,7 @@
 	<p class="center small"><a href="{{ .RootURL }}/admin/forgot">{{ .L.T "users.forgotPassword" }}</a></p>
 
 </section>
+</main>
 
 {{ template "footer" .}}
 {{ end }}
