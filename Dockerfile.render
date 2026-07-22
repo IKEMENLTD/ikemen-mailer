@@ -18,6 +18,13 @@ RUN apt-get update \
 WORKDIR /src
 COPY . .
 
+# The stock frontend has a `prebuild` hook that runs eslint before every `yarn build`.
+# In a clean container that lint step can exit non-zero (eslint config/plugin
+# resolution → exit 2) and abort the whole image build. Linting is a dev/CI concern,
+# not a release gate, so drop the hook for the production image only. The repo's
+# package.json on disk is untouched — this edits just the copy inside the build stage.
+RUN cd frontend && npm pkg delete scripts.prebuild
+
 # `make dist` = build backend (CGO_ENABLED=0) + build frontend + email-builder +
 # stuffbin pack. Produces a self-contained ./listmonk with all admin/public assets.
 RUN make dist
