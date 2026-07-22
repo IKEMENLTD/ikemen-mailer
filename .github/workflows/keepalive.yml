@@ -1,0 +1,28 @@
+name: keepalive
+# Render の無料枠は15分アクセスが無いとスリープする。10分ごとにサイトを叩いて
+# コールドスタートを防ぐ。※GitHubのスケジュールは負荷で数分ジッターするため、
+# 稀に15分を超えてスリープすることがある。確実に常時起動したい場合は Render を
+# Starter プランに上げるのが本筋（その場合はこのworkflowは不要）。
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping IKEMEN MAILER to prevent Render free-tier spin-down
+        run: |
+          URL="https://ikemen-mailer.onrender.com/"
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 "$URL" || echo "000")
+            echo "attempt $i: HTTP $code"
+            if [ "$code" = "200" ] || [ "$code" = "302" ]; then
+              echo "site is awake"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "site did not respond with 200/302 after 3 attempts (may be a cold start)"
