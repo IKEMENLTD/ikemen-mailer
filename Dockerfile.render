@@ -1,8 +1,8 @@
-# Dockerfile.railway — build IKEMEN MAILER (listmonk fork) from source for Railway.
-# The stock ./Dockerfile only COPYs a prebuilt binary; Railway builds from the repo,
+# Dockerfile.render — build IKEMEN MAILER (listmonk fork) from source for Render.
+# The stock ./Dockerfile only COPYs a prebuilt binary; Render builds from the repo,
 # so this multi-stage file compiles the Go backend + Vue frontend + email-builder,
 # packs the static assets into the single binary with stuffbin (`make dist`), and
-# ships a small alpine runtime.
+# ships a small alpine runtime. The entrypoint binds to Render's injected $PORT.
 
 # ---- build stage: Go + Node in one image so `make dist` can run end to end ----
 FROM golang:1.26.1-bookworm AS builder
@@ -31,9 +31,9 @@ WORKDIR /listmonk
 
 COPY --from=builder /src/listmonk .
 COPY --from=builder /src/config.toml.sample config.toml
-COPY railway-entrypoint.sh /usr/local/bin/railway-entrypoint.sh
-RUN chmod +x /usr/local/bin/railway-entrypoint.sh
+COPY render-entrypoint.sh /usr/local/bin/render-entrypoint.sh
+RUN chmod +x /usr/local/bin/render-entrypoint.sh
 
 EXPOSE 9000
 
-ENTRYPOINT ["/usr/local/bin/railway-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/render-entrypoint.sh"]

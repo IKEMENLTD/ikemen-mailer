@@ -1,6 +1,6 @@
 #!/bin/sh
-# Railway entrypoint for IKEMEN MAILER (listmonk fork).
-# - Binds to Railway's injected $PORT (falls back to 9000 for local runs).
+# Render entrypoint for IKEMEN MAILER (listmonk fork).
+# - Binds to Render's injected $PORT (falls back to 9000 for local runs).
 # - `--config ''` makes listmonk ignore config.toml and read ONLY LISTMONK_* env vars
 #   (DB creds etc. are set in the Railway service variables).
 # - --install --idempotent : creates the schema only on a fresh DB (safe every boot).
