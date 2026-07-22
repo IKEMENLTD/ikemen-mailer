@@ -1,0 +1,10 @@
+# Railway build/deploy config for IKEMEN MAILER.
+# Tells Railway to build from Dockerfile.railway (source build) instead of the
+# stock runtime-only Dockerfile.
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile.railway"
+
+[deploy]
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3

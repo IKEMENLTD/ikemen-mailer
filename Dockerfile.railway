@@ -1,0 +1,39 @@
+# Dockerfile.railway — build IKEMEN MAILER (listmonk fork) from source for Railway.
+# The stock ./Dockerfile only COPYs a prebuilt binary; Railway builds from the repo,
+# so this multi-stage file compiles the Go backend + Vue frontend + email-builder,
+# packs the static assets into the single binary with stuffbin (`make dist`), and
+# ships a small alpine runtime.
+
+# ---- build stage: Go + Node in one image so `make dist` can run end to end ----
+FROM golang:1.26.1-bookworm AS builder
+
+# make/git for the Makefile + version stamping; Node 20 + classic yarn for the frontend.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends make git ca-certificates curl gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && npm install -g yarn@1.22.22 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY . .
+
+# `make dist` = build backend (CGO_ENABLED=0) + build frontend + email-builder +
+# stuffbin pack. Produces a self-contained ./listmonk with all admin/public assets.
+RUN make dist
+
+# ---- runtime stage: minimal alpine, just the packed binary ----
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates tzdata
+
+WORKDIR /listmonk
+
+COPY --from=builder /src/listmonk .
+COPY --from=builder /src/config.toml.sample config.toml
+COPY railway-entrypoint.sh /usr/local/bin/railway-entrypoint.sh
+RUN chmod +x /usr/local/bin/railway-entrypoint.sh
+
+EXPOSE 9000
+
+ENTRYPOINT ["/usr/local/bin/railway-entrypoint.sh"]
