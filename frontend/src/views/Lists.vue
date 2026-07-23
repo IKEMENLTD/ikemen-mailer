@@ -165,7 +165,7 @@
       </b-table-column>
 
       <template #empty v-if="!loading.listsFull">
-        <empty-placeholder />
+        <empty-placeholder label="まだリストがありません。最初のリストを作成しましょう。" />
       </template>
     </b-table>
 

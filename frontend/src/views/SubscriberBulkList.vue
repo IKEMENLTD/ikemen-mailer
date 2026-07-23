@@ -8,7 +8,7 @@
       </header>
 
       <section expanded class="modal-card-body">
-        <b-field label="Action">
+        <b-field label="操作">
           <div>
             <b-radio v-model="form.action" name="action" native-value="add" data-cy="check-list-add">
               {{ $t('globals.buttons.add') }}
@@ -22,7 +22,7 @@
           </div>
         </b-field>
 
-        <list-selector label="Target lists" placeholder="Lists to apply to" v-model="form.lists" :selected="form.lists"
+        <list-selector label="対象リスト" placeholder="適用するリスト" v-model="form.lists" :selected="form.lists"
           :all="lists.results" />
 
         <b-field :message="$t('subscribers.preconfirmHelp')">

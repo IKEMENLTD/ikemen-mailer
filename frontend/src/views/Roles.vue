@@ -68,7 +68,7 @@
       </b-table-column>
 
       <template #empty v-if="!isLoading()">
-        <empty-placeholder />
+        <empty-placeholder label="まだロールがありません。新しいロールを作成しましょう。" />
       </template>
     </b-table>
 

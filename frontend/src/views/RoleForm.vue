@@ -91,13 +91,13 @@
               {{ $tc(`globals.terms.${props.row.group}`) }}
             </b-table-column>
 
-            <b-table-column v-slot="props" field="permissions" label="Permissions">
+            <b-table-column v-slot="props" field="permissions" label="権限">
               <div v-for="p in props.row.permissions" :key="p">
                 <b-checkbox v-model="form.permissions" :native-value="p" :disabled="disabled">
                   {{ p }}
                   <a v-if="p === 'subscribers:sql_query'"
                     href="https://listmonk.app/docs/roles-and-permissions/#subscriberssql_query" target="_blank"
-                    rel="noopener noreferrer" aria-label="Warning: high risk permission">
+                    rel="noopener noreferrer" aria-label="警告: 高リスクの権限">
                     <b-icon icon="warning-empty" type="is-danger" size="is-small" />
                   </a>
                 </b-checkbox>

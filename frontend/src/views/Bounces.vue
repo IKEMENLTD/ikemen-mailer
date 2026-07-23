@@ -17,10 +17,10 @@
       <template #top-left>
         <div class="actions">
           <template v-if="bulk.checked.length > 0">
-            <a class="a" href="#" @click.prevent="$utils.confirm(null, () => deleteBounces())" data-cy="btn-delete">
+            <a class="a" href="#" @click.prevent="$utils.confirm('選択したバウンス記録を削除します。よろしいですか？', () => deleteBounces())" data-cy="btn-delete">
               <b-icon icon="trash-can-outline" size="is-small" /> {{ $t('globals.buttons.delete') }}
             </a>
-            <a class="a" href="#" @click.prevent="$utils.confirm(null, () => blocklistSubscribers())"
+            <a class="a" href="#" @click.prevent="$utils.confirm('選択した加入者をブロックリストに追加します。よろしいですか？', () => blocklistSubscribers())"
               data-cy="btn-manage-blocklist">
               <b-icon icon="account-off-outline" size="is-small" /> {{ $t('import.blocklist') }}
             </a>
@@ -72,7 +72,8 @@
 
       <b-table-column v-slot="props" cell-class="actions" align="right">
         <div>
-          <a v-if="!props.row.isDefault" href="#" @click.prevent="$utils.confirm(null, () => deleteBounce(props.row))"
+          <a v-if="!props.row.isDefault" href="#"
+            @click.prevent="$utils.confirm(`バウンス「${props.row.email}」を削除します。よろしいですか？`, () => deleteBounce(props.row))"
             data-cy="btn-delete" :aria-label="$t('globals.buttons.delete')">
             <b-tooltip :label="$t('globals.buttons.delete')" type="is-dark">
               <b-icon icon="trash-can-outline" size="is-small" />
@@ -89,7 +90,7 @@
       </template>
 
       <template #empty v-if="!loading.templates">
-        <empty-placeholder />
+        <empty-placeholder label="バウンス記録はまだありません。" />
       </template>
     </b-table>
   </section>

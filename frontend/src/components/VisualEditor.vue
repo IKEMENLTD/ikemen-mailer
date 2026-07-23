@@ -1,7 +1,7 @@
 <template>
   <div class="visual-editor-wrapper">
     <iframe ref="visualEditor" id="visual-editor" class="visual-editor email-builder-container"
-      title="Visual email editor" />
+      title="ビジュアルメールエディタ" />
 
     <!-- image picker -->
     <b-modal scroll="keep" :aria-modal="true" :active.sync="isMediaVisible" :width="900">

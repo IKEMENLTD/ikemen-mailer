@@ -266,7 +266,7 @@
       </b-table-column>
 
       <template #empty v-if="!loading.campaigns">
-        <empty-placeholder />
+        <empty-placeholder label="まだキャンペーンがありません。新規キャンペーンを作成しましょう。" />
       </template>
     </b-table>
 

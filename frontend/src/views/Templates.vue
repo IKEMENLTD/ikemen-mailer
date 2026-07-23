@@ -87,7 +87,8 @@
             <b-icon icon="check-circle-outline" size="is-small" />
           </span>
 
-          <a v-if="!props.row.isDefault" href="#" @click.prevent="$utils.confirm(null, () => deleteTemplate(props.row))"
+          <a v-if="!props.row.isDefault" href="#"
+            @click.prevent="$utils.confirm(`テンプレート「${props.row.name}」を削除します。よろしいですか？`, () => deleteTemplate(props.row))"
             data-cy="btn-delete" :aria-label="$t('globals.buttons.delete')">
             <b-tooltip :label="$t('globals.buttons.delete')" type="is-dark">
               <b-icon icon="trash-can-outline" size="is-small" />
@@ -100,7 +101,7 @@
       </b-table-column>
 
       <template #empty v-if="!loading.templates">
-        <empty-placeholder />
+        <empty-placeholder label="まだテンプレートがありません。最初のテンプレートを作成しましょう。" />
       </template>
     </b-table>
 

@@ -1,46 +1,47 @@
 <template>
   <section class="about content">
     <header class="page-header">
-      <h1 class="title is-4">About Hakobu</h1>
+      <h1 class="title is-4">Hakobu について</h1>
     </header>
 
     <div class="about-grid">
       <article class="box about-card">
-        <h2 class="about-label">Product</h2>
+        <h2 class="about-label">製品</h2>
         <p class="about-value">Hakobu</p>
         <p class="about-meta">
-          Self-hosted newsletter &amp; mailing-list platform for IKEMEN-LTD.
+          IKEMEN-LTD 向けの自社ホスト型メール配信・メーリングリスト基盤です。
         </p>
       </article>
 
       <article class="box about-card">
-        <h2 class="about-label">Version</h2>
+        <h2 class="about-label">バージョン</h2>
         <p class="about-value">{{ serverConfig.version || '—' }}</p>
         <p class="about-meta">
-          Build channel: stable
+          リリースチャネル: stable（安定版）
         </p>
       </article>
 
       <article class="box about-card">
-        <h2 class="about-label">License</h2>
+        <h2 class="about-label">ライセンス</h2>
         <p class="about-value">AGPL-3.0</p>
         <p class="about-meta">
-          Network-use disclosure required. See source link below.
+          ネットワーク利用時のソース開示が必要です。下記のソースリンクをご覧ください。
         </p>
       </article>
     </div>
 
     <article class="box about-attribution">
-      <h2 class="about-attribution-title">Open-source attribution</h2>
+      <h2 class="about-attribution-title">オープンソースの帰属表示</h2>
       <p>
-        Hakobu is built on top of
+        Hakobu は
         <a href="https://github.com/knadh/listmonk" target="_blank" rel="noopener noreferrer">listmonk</a>
-        (Copyright &copy; Kailash Nadh), distributed under the
-        <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank" rel="noopener noreferrer">GNU Affero General Public License v3.0</a>.
+        （Copyright &copy; Kailash Nadh）をベースに構築されており、
+        <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank" rel="noopener noreferrer">GNU Affero General Public License v3.0</a>
+        の下で配布されています。
       </p>
       <p>
-        In accordance with AGPL &sect;13, the complete corresponding source code for this running instance,
-        including all Hakobu modifications, is available at:
+        AGPL &sect;13 に従い、稼働中のこのインスタンスに対応する完全なソースコード（Hakobu による
+        すべての改変を含む）は、以下で公開しています。
       </p>
       <p>
         <a href="https://github.com/IKEMENLTD/ikemen-mailer" target="_blank" rel="noopener noreferrer" class="about-source">
@@ -48,7 +49,7 @@
         </a>
       </p>
       <p class="about-upstream-doc">
-        Upstream documentation: <a href="https://listmonk.app/docs/" target="_blank" rel="noopener noreferrer">listmonk.app/docs</a>
+        上流のドキュメント: <a href="https://listmonk.app/docs/" target="_blank" rel="noopener noreferrer">listmonk.app/docs</a>
       </p>
     </article>
   </section>

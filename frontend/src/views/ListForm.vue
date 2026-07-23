@@ -34,7 +34,7 @@
         </b-field>
 
         <b-field :label="$t('lists.optin')" label-position="on-border" :message="$t('lists.optinHelp')">
-          <b-select v-model="form.optin" name="optin" placeholder="Opt-in type" required expanded>
+          <b-select v-model="form.optin" name="optin" placeholder="オプトインの種類" required expanded>
             <option value="single">
               {{ $t('lists.optins.single') }}
             </option>

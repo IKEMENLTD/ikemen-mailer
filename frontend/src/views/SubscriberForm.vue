@@ -324,7 +324,7 @@ export default Vue.extend({
         return null;
       }
       if (attribs instanceof Array) {
-        this.$utils.toast('Attributes should be a map {} and not an array []', 'is-danger', 3000);
+        this.$utils.toast('属性は配列[]ではなくマップ{}で指定してください', 'is-danger', 3000);
         return null;
       }
 

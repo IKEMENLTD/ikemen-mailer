@@ -16,10 +16,10 @@
 			<p>
 				<label for="password">{{ .L.T "users.password" }}</label>
 				<input id="password" type="password" name="password" autocomplete="current-password" required minlength="8" aria-describedby="pw-hint" />
-				<small id="pw-hint" class="pw-hint-visible">Minimum 8 characters.</small>
+				<small id="pw-hint" class="pw-hint-visible">8文字以上で入力してください。</small>
 			</p>
 
-			{{ if .Data.Error }}<p><span class="error" role="alert"><span class="is-sr-only">Error: </span>{{ .Data.Error }}</span></p>{{ end }}
+			{{ if .Data.Error }}<p><span class="error" role="alert"><span class="is-sr-only">エラー: </span>{{ .Data.Error }}</span></p>{{ end }}
 
 			<p class="submit"><button class="button" type="submit">{{ .L.T "users.login" }}</button></p>
 		</div>
@@ -27,7 +27,7 @@
 	{{ end }}
 
 	{{ if .Data.OIDCProvider }}
-	<form method="post" action="/auth/oidc" aria-label="Single sign-on">
+	<form method="post" action="/auth/oidc" aria-label="シングルサインオン">
 		<div>
 			<input type="hidden" name="nonce" value="{{ .Data.Nonce }}" />
 			<input type="hidden" name="next" value="{{ .Data.NextURI }}" />

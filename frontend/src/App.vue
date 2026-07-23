@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <a href="#main-content" class="skip-link" v-if="$root.isLoaded">Skip to main content</a>
+    <a href="#main-content" class="skip-link" v-if="$root.isLoaded">メインコンテンツへスキップ</a>
     <b-navbar :fixed-top="true" v-if="$root.isLoaded">
       <template #brand>
         <div class="logo">
@@ -76,7 +76,7 @@
                 version: `${serverConfig.update.update.release_version}
               (${$utils.getDate(serverConfig.update.update.release_date).format('DD MMM YY')})`,
               }) }}
-              <a :href="serverConfig.update.update.url" target="_blank" rel="noopener noreferer">View</a>
+              <a :href="serverConfig.update.update.url" target="_blank" rel="noopener noreferer">表示</a>
             </div>
 
             <template v-if="serverConfig.update.messages && serverConfig.update.messages.length > 0">
@@ -84,20 +84,19 @@
                 :class="{ [m.priority === 'high' ? 'is-danger' : 'is-info']: true }" :key="m.title">
                 <h3 class="is-size-5" v-if="m.title"><strong>{{ m.title }}</strong></h3>
                 <p v-if="m.description">{{ m.description }}</p>
-                <a v-if="m.url" :href="m.url" target="_blank" rel="noopener noreferer">View</a>
+                <a v-if="m.url" :href="m.url" target="_blank" rel="noopener noreferer">表示</a>
               </div>
             </template>
           </template>
 
           <div v-if="serverConfig.has_legacy_user" class="notification is-danger">
             <b-icon icon="warning-empty" />
-            Remove the <code>admin_username</code> and <code>admin_password</code> fields from the TOML
-            configuration file or environment variables. If you are using APIs, create and use new API credentials
-            before removing them. Visit
+            TOML 設定ファイルまたは環境変数から <code>admin_username</code> と <code>admin_password</code> の項目を
+            削除してください。API を利用している場合は、削除する前に新しい API 認証情報を作成してご利用ください。
             <router-link :to="{ name: 'users' }">
-              Admin -> Settings -> Users
-            </router-link> dashboard. <a href="https://listmonk.app/docs/upgrade/#upgrading-to-v4xx" target="_blank"
-              rel="noopener noreferer">Learn more.</a>
+              管理 -> 設定 -> ユーザー
+            </router-link> の画面をご確認ください。<a href="https://listmonk.app/docs/upgrade/#upgrading-to-v4xx" target="_blank"
+              rel="noopener noreferer">詳しくはこちら。</a>
           </div>
         </div>
 
@@ -164,7 +163,7 @@ export default Vue.extend({
 
     reloadApp() {
       this.$api.reloadApp().then(() => {
-        this.$utils.toast('Reloading app ...');
+        this.$utils.toast('アプリを再読み込みしています…');
 
         // Poll until there's a 200 response, waiting for the app
         // to restart and come back up.

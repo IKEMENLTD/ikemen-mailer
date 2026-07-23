@@ -81,7 +81,7 @@
               </div>
             </a>
             <div class="actions">
-              <a href="#" @click.prevent="$utils.confirm(null, () => onDeleteMedia(item.id))" data-cy="btn-delete"
+              <a href="#" @click.prevent="$utils.confirm(`メディア「${item.filename}」を削除します。よろしいですか？`, () => onDeleteMedia(item.id))" data-cy="btn-delete"
                 :aria-label="$t('globals.buttons.delete')" class="delete-btn">
                 <b-icon icon="trash-can-outline" size="is-small" />
               </a>
@@ -96,7 +96,7 @@
 
       <!-- Empty State -->
       <div v-else-if="!loading.media">
-        <empty-placeholder />
+        <empty-placeholder label="まだメディアがありません。" />
       </div>
 
       <!-- Pagination -->

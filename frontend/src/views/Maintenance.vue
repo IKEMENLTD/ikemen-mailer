@@ -15,7 +15,7 @@
       </h4><br />
       <div class="columns">
         <div class="column is-4">
-          <b-field label="Data" :message="$t('maintenance.orphanHelp')">
+          <b-field label="データ" :message="$t('maintenance.orphanHelp')">
             <b-select v-model="subscriberType" expanded>
               <option value="orphan">
                 {{ $t('dashboard.orphanSubs') }}
@@ -44,7 +44,7 @@
       </h4><br />
       <div class="columns">
         <div class="column is-4">
-          <b-field label="Data">
+          <b-field label="データ">
             <b-select v-model="subscriptionType" expanded>
               <option value="optin">
                 {{ $t('maintenance.maintenance.unconfirmedOptins') }}
@@ -76,7 +76,7 @@
       </h4><br />
       <div class="columns">
         <div class="column is-4">
-          <b-field label="Data">
+          <b-field label="データ">
             <b-select v-model="analyticsType" expanded>
               <option selected value="all">
                 {{ $t('globals.terms.all') }}
@@ -114,7 +114,7 @@
       <br />
       <div class="columns">
         <div class="column is-4">
-          <b-field label="Data">
+          <b-field label="データ">
             <b-select v-model="exportType" expanded>
               <option value="views">
                 {{ $t('dashboard.campaignViews') }}

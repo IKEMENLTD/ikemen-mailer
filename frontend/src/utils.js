@@ -72,7 +72,10 @@ export default class Utils {
     const d = dayjs(stamp);
     const day = this.i18n.t(`globals.days.${d.day() + 1}`);
     const month = this.i18n.t(`globals.months.${d.month() + 1}`);
-    let out = d.format(`[${day},] DD [${month}] YYYY`);
+    // Natural Japanese order: 2026年7月23日(木). `month` already carries the
+    // 月 suffix (e.g. "7月") and `day` is the weekday label (e.g. "木"); both
+    // are bracketed so dayjs treats them as literals.
+    let out = d.format(`YYYY[年][${month}]D[日]([${day}])`);
     if (showTime) {
       out += d.format(', HH:mm');
     }

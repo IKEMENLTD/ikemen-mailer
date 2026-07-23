@@ -117,7 +117,7 @@
       </b-table-column>
 
       <template #empty v-if="!loading.users">
-        <empty-placeholder />
+        <empty-placeholder label="まだユーザーがいません。" />
       </template>
     </b-table>
 
