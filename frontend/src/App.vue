@@ -74,7 +74,7 @@
             <div v-if="serverConfig.update.update.is_new" class="notification is-success">
               {{ $t('settings.updateAvailable', {
                 version: `${serverConfig.update.update.release_version}
-              (${$utils.getDate(serverConfig.update.update.release_date).format('DD MMM YY')})`,
+              (${$utils.getDate(serverConfig.update.update.release_date).format('YYYY/MM/DD')})`,
               }) }}
               <a :href="serverConfig.update.update.url" target="_blank" rel="noopener noreferer">表示</a>
             </div>

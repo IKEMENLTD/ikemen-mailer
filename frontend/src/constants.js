@@ -44,7 +44,7 @@ export const storeKeys = Object.freeze({
   isLoading: 'isLoading',
 });
 
-export const timestamp = 'ddd D MMM YYYY, hh:mm A';
+export const timestamp = 'YYYY/MM/DD HH:mm';
 
 export const colors = Object.freeze({
   primary: '#0055d4',

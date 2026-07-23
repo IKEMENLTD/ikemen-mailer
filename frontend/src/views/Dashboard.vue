@@ -197,7 +197,7 @@ export default Vue.extend({
         return {};
       }
       return {
-        labels: data.map((d) => dayjs(d.date).format('DD MMM')),
+        labels: data.map((d) => dayjs(d.date).format('M/D')),
         datasets: [
           {
             data: [...data.map((d) => d.count)],
