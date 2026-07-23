@@ -55,10 +55,44 @@ listmonk（`knadh/listmonk`）をフォークした自社メール配信ツー�
 - **公開購読フロー**: 公開フォームから送信 → 購読者登録成功を実機確認。
 - 公開ページ（トップ/購読フォーム/アーカイブ）… 日本語＋Hakobu＋`lang="ja"`。
 
-## 7. 残タスク
-- **Amazon SES 設定**（実配信の要）: 管理画面 Settings → SMTP に SES の SMTP 認証情報。`app.from_email` を SES 検証済みドメインへ。詳細は `DEPLOY_RENDER.md` §3。
-- 本番運用なら Render Starter 昇格（スリープ無効化・PG 永続化）。
-- jp.json のネイティブ言い回し校正（値は日本語だが一部機械翻訳調）。
+## 7. 引き継ぎ（次の人がやること）
+
+> 現在の状態（2026-07-23）: **本番稼働・完全日本語化・実機検証済み**。管理画面/公開ページとも Hakobu ブランド＋日本語で動作。**唯一「実際のメール送信（SES）」だけ未設定**。下記を上から順にやれば配信開始できる。
+
+### ステップ A — Amazon SES 設定【実配信の要・最優先】
+実際にメールを送るにはこれが必須（未設定だとキャンペーンを送っても届かない）。
+
+1. **AWS SES を開く**（AWSアカウントが必要）。リージョンは **`ap-northeast-1`（東京）** 推奨。
+2. **送信元の検証**: SES → 「Verified identities」→ Create identity
+   - ドメインで検証（推奨）: 自社ドメインを入力 → 表示される **DKIM/SPF の DNS レコードをドメインの DNS に追加** → 検証完了を待つ。
+   - or 単一メールアドレスで検証（手軽）: アドレスを入力 → 届いた確認メールのリンクをクリック。
+3. **サンドボックス解除**: SES → 「Account dashboard」→ **Request production access**。
+   - ⚠未解除だと「検証済みの宛先」にしか送れない（本番配信は不可）。申請は数時間〜1日。
+4. **SMTP 認証情報を作成**: SES → 「SMTP settings」→ **Create SMTP credentials**
+   - 発行される **SMTP ユーザー名 / パスワードを保存**（※ IAM のアクセスキーとは別物。必ず SMTP credentials）。
+5. **Hakobu 管理画面に入力**: `/admin/login`（admin / PWは §3）→ **設定 → SMTP**（タブ）→ 有効化して:
+   - Host: `email-smtp.ap-northeast-1.amazonaws.com`（リージョンに合わせる）
+   - Port: `587` ／ 認証: `STARTTLS`（LOGIN）
+   - Username / Password: 手順4の SMTP 認証情報
+   - 保存。
+6. **送信元アドレスを実値に**: 設定 → 汎用 → 「メールの`送り主`をデフォルトにする」を **SES で検証済みのアドレス**へ。
+   - 現在は `Hakobu <noreply@mail.yoursite.com>`（プレースホルダ）。例: `Hakobu <news@自社ドメイン>`。
+7. **送信テスト**: 購読者を1件作成 → キャンペーン作成 → 「テストメッセージを送信」で自分宛に届くか確認 → OKなら本配信可。
+
+### ステップ B — Render 有料化【本番運用なら推奨】
+無料枠のままだと (1) 15分アクセスが無いとスリープ（次アクセス〜50秒待ち）、(2) **無料 PostgreSQL は約90日（〜2026-08-21頃）で削除**される。
+
+1. Render Dashboard → **ikemen-mailer** → Settings → Instance Type → **Starter（$7/月）**（スリープ無効化）。
+2. Render Dashboard → **ikemen-mailer-db** → 有料プランにアップグレード（無料PGの期限切れ＝データ消失を回避）。
+3. Starter にしたら `.github/workflows/keepalive.yml`（10分ping）は不要 → 削除してよい。
+
+### ステップ C — 任意の仕上げ
+- jp.json の言い回しのネイティブ校正（値は日本語だが一部機械翻訳調）。
+- モバイル実機でのレイアウト確認。
+- 独自ドメイン割り当て（Render Settings → Custom Domain。例 `mail.自社ドメイン`）→ その場合 `app.root_url` と SES 送信元もそのドメインに合わせる。
+
+### デプロイの反映方法（コード変更時）
+public repo 接続のため push だけでは反映されない。**Render Dashboard → Manual Deploy → Deploy latest commit** を押す（§2）。DBは消えない（FORCE_REINSTALL は削除済み）。
 
 ## 8. 補助スクリプト（scratchpad、参考）
 - ロゴ生成: `branding_src/gen_assets.py`
