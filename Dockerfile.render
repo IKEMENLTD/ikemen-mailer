@@ -1,4 +1,4 @@
-# Dockerfile.render — build IKEMEN MAILER (listmonk fork) from source for Render.
+# Dockerfile.render — build Hakobu (listmonk fork) from source for Render.
 # The stock ./Dockerfile only COPYs a prebuilt binary; Render builds from the repo,
 # so this multi-stage file compiles the Go backend + Vue frontend + email-builder,
 # packs the static assets into the single binary with stuffbin (`make dist`), and

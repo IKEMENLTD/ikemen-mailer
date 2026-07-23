@@ -1,13 +1,13 @@
 <template>
   <section class="about content">
     <header class="page-header">
-      <h1 class="title is-4">About IKEMEN MAILER</h1>
+      <h1 class="title is-4">About Hakobu</h1>
     </header>
 
     <div class="about-grid">
       <article class="box about-card">
         <h2 class="about-label">Product</h2>
-        <p class="about-value">IKEMEN MAILER</p>
+        <p class="about-value">Hakobu</p>
         <p class="about-meta">
           Self-hosted newsletter &amp; mailing-list platform for IKEMEN-LTD.
         </p>
@@ -33,14 +33,14 @@
     <article class="box about-attribution">
       <h2 class="about-attribution-title">Open-source attribution</h2>
       <p>
-        IKEMEN MAILER is built on top of
+        Hakobu is built on top of
         <a href="https://github.com/knadh/listmonk" target="_blank" rel="noopener noreferrer">listmonk</a>
         (Copyright &copy; Kailash Nadh), distributed under the
         <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank" rel="noopener noreferrer">GNU Affero General Public License v3.0</a>.
       </p>
       <p>
         In accordance with AGPL &sect;13, the complete corresponding source code for this running instance,
-        including all IKEMEN MAILER modifications, is available at:
+        including all Hakobu modifications, is available at:
       </p>
       <p>
         <a href="https://github.com/IKEMENLTD/ikemen-mailer" target="_blank" rel="noopener noreferrer" class="about-source">

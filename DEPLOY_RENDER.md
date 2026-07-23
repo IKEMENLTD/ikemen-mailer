@@ -1,4 +1,4 @@
-# IKEMEN MAILER — Render 本番デプロイ手順（無料枠）
+# Hakobu — Render 本番デプロイ手順（無料枠）
 
 listmonk フォークを Render に無料デプロイし、Amazon SES で配信するための手順。
 リポジトリに同梱済み:
@@ -42,7 +42,7 @@ listmonk の SMTP はデプロイ後に**管理画面で設定**する（env で
    （※ IAMアクセスキーとは別物。必ず SMTP credentials を使う）
 4. サンドボックス解除: **Request production access**（未解除だと検証済みアドレスにしか送れない）
 
-### 3-2. IKEMEN MAILER 側（管理画面 → Settings → SMTP）
+### 3-2. Hakobu 側（管理画面 → Settings → SMTP）
 | 項目 | 値 |
 |---|---|
 | Host | `email-smtp.ap-northeast-1.amazonaws.com`（リージョンに合わせる） |
@@ -63,5 +63,5 @@ listmonk の SMTP はデプロイ後に**管理画面で設定**する（env で
 - **ビルド失敗**: Render の Logs を確認。Goバージョン(`golang:1.26.1-bookworm`)や
   frontend の eslint(`prebuild`)で落ちることがある。ログを貼ってくれれば修正する。
 - **DB接続エラー**: `LISTMONK_db__ssl_mode=require`（Render Postgres はSSL必須）を確認。
-- **502 / 起動しない**: Logs に `Starting IKEMEN MAILER on 0.0.0.0:<PORT>` が出ているか。
+- **502 / 起動しない**: Logs に `Starting Hakobu on 0.0.0.0:<PORT>` が出ているか。
 - **メールが届かない**: SESサンドボックス未解除 / 送信元未検証 / SMTP認証情報の取り違え が定番。

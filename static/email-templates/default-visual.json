@@ -46,7 +46,7 @@
       },
       "props": {
         "markdown": true,
-        "text": "This is a test e-mail campaign from IKEMEN MAILER. Your second name is {{ .Subscriber.LastName }} and this block of text is in Markdown.\n\nHere is a [tracked link](https://example.com@TrackLink).\n\nUse the link icon in the editor toolbar or when writing raw HTML or Markdown, simply suffix @TrackLink to the end of a URL to turn it into a tracking link. Example:\n\n<a href=\"https:/‌/example.com@TrackLink\"></a>\n\nFor help, refer to the [upstream documentation](https://listmonk.app/docs)."
+        "text": "This is a test e-mail campaign from Hakobu. Your second name is {{ .Subscriber.LastName }} and this block of text is in Markdown.\n\nHere is a [tracked link](https://example.com@TrackLink).\n\nUse the link icon in the editor toolbar or when writing raw HTML or Markdown, simply suffix @TrackLink to the end of a URL to turn it into a tracking link. Example:\n\n<a href=\"https:/‌/example.com@TrackLink\"></a>\n\nFor help, refer to the [upstream documentation](https://listmonk.app/docs)."
       }
     }
   },

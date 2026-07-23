@@ -1,5 +1,5 @@
 /* =========================================================================
-   IKEMEN MAILER — Design System
+   Hakobu — Design System
    Tokens · Typography · Elevation · Radii
    Built on top of Bulma + Buefy. Upstream listmonk variables are refined
    to match the IKEMEN-LTD premium-SaaS visual language.
@@ -271,7 +271,7 @@ section {
   color: $primary !important;
 }
 
-/* Base .box — re-skinned by IKEMEN MAILER design layer at the bottom of this
+/* Base .box — re-skinned by Hakobu design layer at the bottom of this
    file. We keep tokens here so any consumer rendering BEFORE the body class is
    applied (route transitions, modal portals on <body>, SSR fragments) still
    gets the premium surface, not the legacy 2px hard shadow. */
@@ -903,7 +903,7 @@ body.is-noscroll {
 /* Dashboard */
 section.dashboard {
   /* Spacing/elevation owned by `body.ikemen-skin section.dashboard` overrides
-     in the IKEMEN MAILER design layer at the bottom of this file. */
+     in the Hakobu design layer at the bottom of this file. */
   .tile.notification {
     @extend .box;
   }
@@ -1507,7 +1507,7 @@ th.role-toggle-select a {
 }
 
 /* =========================================================================
-   IKEMEN MAILER — Premium overrides v2
+   Hakobu — Premium overrides v2
    Sits after upstream listmonk styles. Scoped under `body.ikemen-skin` so the
    override layer wins on specificity (not source-order), making upstream
    rebases safe. Public-page style.css mirrors these tokens with the SAME

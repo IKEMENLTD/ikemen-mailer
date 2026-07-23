@@ -1,4 +1,4 @@
-# render.yaml — Render Blueprint for IKEMEN MAILER (listmonk fork).
+# render.yaml — Render Blueprint for Hakobu (listmonk fork).
 # Defines a free PostgreSQL database + a free Docker web service and wires the DB
 # credentials into the app via LISTMONK_* env vars. The admin password is generated
 # by Render (never committed to this public repo).

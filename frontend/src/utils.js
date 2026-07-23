@@ -15,7 +15,7 @@ const reEmail = /(.+?)@(.+?)/ig;
 const prefKey = 'ikemen_mailer_pref';
 const legacyPrefKey = 'listmonk_pref';
 // One-time migration: lift any legacy prefs over so existing users do not
-// lose dismissed banners / per-table sorts on first IKEMEN MAILER load.
+// lose dismissed banners / per-table sorts on first Hakobu load.
 if (typeof localStorage !== 'undefined') {
   const legacy = localStorage.getItem(legacyPrefKey);
   if (legacy && !localStorage.getItem(prefKey)) {

@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Ping IKEMEN MAILER to prevent Render free-tier spin-down
+      - name: Ping Hakobu to prevent Render free-tier spin-down
         run: |
           URL="https://ikemen-mailer.onrender.com/"
           for i in 1 2 3; do

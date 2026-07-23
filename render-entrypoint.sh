@@ -1,5 +1,5 @@
 #!/bin/sh
-# Render entrypoint for IKEMEN MAILER (listmonk fork).
+# Render entrypoint for Hakobu (listmonk fork).
 # - Binds to Render's injected $PORT (falls back to 9000 for local runs).
 # - `--config ''` makes listmonk ignore config.toml and read ONLY LISTMONK_* env vars
 #   (DB creds etc. are set in the Railway service variables).
@@ -8,7 +8,7 @@
 set -e
 
 export LISTMONK_app__address="0.0.0.0:${PORT:-9000}"
-echo "==> Starting IKEMEN MAILER on ${LISTMONK_app__address}"
+echo "==> Starting Hakobu on ${LISTMONK_app__address}"
 
 # One-shot recovery hatch: set FORCE_REINSTALL=1 in the Render env to WIPE and
 # recreate the schema on next boot. This re-runs listmonk's full --install, which

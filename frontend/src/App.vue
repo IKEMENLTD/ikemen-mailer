@@ -4,8 +4,8 @@
     <b-navbar :fixed-top="true" v-if="$root.isLoaded">
       <template #brand>
         <div class="logo">
-          <router-link :to="{ name: 'dashboard' }" aria-label="IKEMEN MAILER home">
-            <img class="full" src="@/assets/logo.svg" alt="IKEMEN MAILER" />
+          <router-link :to="{ name: 'dashboard' }" aria-label="Hakobu home">
+            <img class="full" src="@/assets/logo.svg" alt="Hakobu" />
             <img class="favicon" src="@/assets/logo-mark.svg" alt="" aria-hidden="true" />
           </router-link>
         </div>

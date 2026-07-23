@@ -1,6 +1,6 @@
-# IKEMEN MAILER
+# Hakobu
 
-**IKEMEN MAILER** is the self-hosted newsletter & mailing-list platform for IKEMEN-LTD and its client portfolio. It is built as a downstream of the open-source [listmonk](https://listmonk.app) project (AGPL-3.0), with a refreshed design system, brand identity, and operational tooling tuned for in-house and managed-service use.
+**Hakobu** is the self-hosted newsletter & mailing-list platform for IKEMEN-LTD and its client portfolio. It is built as a downstream of the open-source [listmonk](https://listmonk.app) project (AGPL-3.0), with a refreshed design system, brand identity, and operational tooling tuned for in-house and managed-service use.
 
 > Built on top of [listmonk](https://github.com/knadh/listmonk) by Kailash Nadh — AGPL-3.0 licensed. All upstream copyrights and license obligations are preserved.
 
@@ -8,16 +8,16 @@
 
 ## What's different from upstream listmonk
 
-| Area | listmonk (upstream) | **IKEMEN MAILER** |
+| Area | listmonk (upstream) | **Hakobu** |
 | --- | --- | --- |
-| Brand | listmonk | IKEMEN MAILER |
+| Brand | listmonk | Hakobu |
 | Design system | Bulma defaults + custom CSS | Refined design tokens (color · type · spacing · shadow · radius), premium SaaS aesthetic |
 | Color palette | `#0055d4` flat blue | Indigo 600 (`#4F46E5`) + Slate 900 text + Amber 500 accent |
 | Sidebar | Right-border active indicator | Soft pill background + subtle gradient rail |
 | Dashboard tiles | Hard-shadow boxes | Layered elevation cards with refined hover |
 | Login / Public pages | Plain Bulma forms | Centered glass card on subtle gradient backdrop |
 | Iconography | Material Design Icons (kept) + emoji decorations | Material Design Icons only — no emoji decorations (SVG-first house rule) |
-| Footer | "Powered by listmonk" | "IKEMEN MAILER · Powered by listmonk" (AGPL attribution preserved) |
+| Footer | "Powered by listmonk" | "Hakobu · Powered by listmonk" (AGPL attribution preserved) |
 
 The Go backend, schema, queries, i18n, and admin API surface remain compatible with upstream — making upstream security patches and feature merges straightforward.
 
@@ -98,15 +98,15 @@ The SCSS-side variables share the same names with a `$ikemen-*` prefix (e.g. `$i
 
 ### Component scope
 
-The IKEMEN MAILER design layer wraps all admin overrides in a single `body.ikemen-skin { … }` block (bottom of `style.scss`, after the comment marker `IKEMEN MAILER — Premium overrides v2`). The body class is set in `frontend/index.html` on the `<body>` element. This raises the override layer's specificity to `(0,2,X)` against upstream listmonk's `(0,1,X)` rules — overrides win independent of source order, so future rebases against upstream listmonk are safe.
+The Hakobu design layer wraps all admin overrides in a single `body.ikemen-skin { … }` block (bottom of `style.scss`, after the comment marker `Hakobu — Premium overrides v2`). The body class is set in `frontend/index.html` on the `<body>` element. This raises the override layer's specificity to `(0,2,X)` against upstream listmonk's `(0,1,X)` rules — overrides win independent of source order, so future rebases against upstream listmonk are safe.
 
 ---
 
 ## License
 
-IKEMEN MAILER is distributed under the **GNU Affero General Public License v3.0** (AGPL-3.0), inherited from upstream listmonk.
+Hakobu is distributed under the **GNU Affero General Public License v3.0** (AGPL-3.0), inherited from upstream listmonk.
 
 - Upstream: <https://github.com/knadh/listmonk> — Copyright © Kailash Nadh
-- Source-availability obligations: if you run a modified IKEMEN MAILER as a network service, you must offer the source code to its users. The full source for this fork is hosted at <https://github.com/IKEMENLTD/ikemen-mailer>.
+- Source-availability obligations: if you run a modified Hakobu as a network service, you must offer the source code to its users. The full source for this fork is hosted at <https://github.com/IKEMENLTD/ikemen-mailer>.
 
 See [LICENSE](./LICENSE) for the full text.
