@@ -65,9 +65,6 @@
             <template v-if="form.type === 'campaign'">
               {{ $t('templates.placeholderHelp', { placeholder: egPlaceholder }) }}
             </template>
-            <a target="_blank" rel="noopener noreferer" href="https://listmonk.app/docs/templating">
-              {{ $t('globals.buttons.learnMore') }}
-            </a>
           </p>
         </section>
         <footer class="modal-card-foot has-text-right">

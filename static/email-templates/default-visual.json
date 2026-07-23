@@ -79,7 +79,7 @@
       },
       "props": {
         "buttonBackgroundColor": "#4F46E5",
-        "text": "This is a button",
+        "text": "これはボタンです",
         "url": "https://example.com"
       }
     }

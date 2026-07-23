@@ -95,8 +95,7 @@
             削除してください。API を利用している場合は、削除する前に新しい API 認証情報を作成してご利用ください。
             <router-link :to="{ name: 'users' }">
               管理 -> 設定 -> ユーザー
-            </router-link> の画面をご確認ください。<a href="https://listmonk.app/docs/upgrade/#upgrading-to-v4xx" target="_blank"
-              rel="noopener noreferer">詳しくはこちら。</a>
+            </router-link> の画面をご確認ください。
           </div>
         </div>
 

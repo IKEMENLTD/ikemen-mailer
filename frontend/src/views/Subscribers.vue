@@ -43,11 +43,7 @@
                   ref="queryExp" placeholder="subscribers.name LIKE '%user%' or subscribers.status='blocklisted'"
                   data-cy="query" />
                 <span class="is-size-6 has-text-grey">
-                  {{ $t('subscribers.advancedQueryHelp') }}.{{ ' ' }}
-                  <a href="https://listmonk.app/docs/querying-and-segmentation" target="_blank"
-                    rel="noopener noreferrer">
-                    {{ $t('globals.buttons.learnMore') }}.
-                  </a>
+                  {{ $t('subscribers.advancedQueryHelp') }}.
                 </span>
                 <div class="buttons">
                   <b-button native-type="submit" type="is-primary" icon-left="magnify" data-cy="btn-query">

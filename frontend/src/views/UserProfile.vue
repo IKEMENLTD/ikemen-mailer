@@ -62,7 +62,7 @@
           <div v-if="totpQR" class="qr-section">
             <p class="has-text-grey">{{ $t('users.totpScanQR') }}</p><br />
 
-            <img :src="'data:image/png;base64,' + totpQR" alt="QR Code" />
+            <img :src="'data:image/png;base64,' + totpQR" alt="QRコード" />
 
             <br /><br />
             <p>

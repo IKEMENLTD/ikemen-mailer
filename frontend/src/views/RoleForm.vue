@@ -95,19 +95,13 @@
               <div v-for="p in props.row.permissions" :key="p">
                 <b-checkbox v-model="form.permissions" :native-value="p" :disabled="disabled">
                   {{ p }}
-                  <a v-if="p === 'subscribers:sql_query'"
-                    href="https://listmonk.app/docs/roles-and-permissions/#subscriberssql_query" target="_blank"
-                    rel="noopener noreferrer" aria-label="警告: 高リスクの権限">
-                    <b-icon icon="warning-empty" type="is-danger" size="is-small" />
-                  </a>
+                  <b-icon v-if="p === 'subscribers:sql_query'" icon="warning-empty" type="is-danger" size="is-small"
+                    aria-label="警告: 高リスクの権限" />
                 </b-checkbox>
               </div>
             </b-table-column>
           </b-table>
         </template>
-        <a href="https://listmonk.app/docs/roles-and-permissions" target="_blank" rel="noopener noreferrer">
-          <b-icon icon="link-variant" /> {{ $t('globals.buttons.learnMore') }}
-        </a>
       </section>
 
       <footer class="modal-card-foot has-text-right">

@@ -97,10 +97,6 @@
           {{ l.name }}
         </option>
       </b-select>
-      <p class="mt-2">
-        <a href="https://listmonk.app/docs/i18n/#additional-language-packs" target="_blank" rel="noopener noreferer">{{
-          $t('globals.buttons.more') }} &rarr;</a>
-      </p>
     </b-field>
   </div>
 </template>
